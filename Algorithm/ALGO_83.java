@@ -1,11 +1,25 @@
 import java.util.Scanner;
 
 public class ALGO_83 {
+    private static int[] DICT = { 0, 1, 2, 6, 4, 2, 2, 4, 2, 8, 8, 8, 6, 8, 2, 8, 8, 6, 8, 2, 4, 4, 8, 4, 6, 4, 4, 8, 4,
+            6, 8, 8, 6, 8, 2, 2, 2, 4, 2, 8, 2, 2, 4, 2, 8, 6, 6, 2, 6, 4, 7, 7, 4, 2, 8, 4, 4, 8, 4, 6, 6, 6, 2, 6, 4,
+            6, 6, 2, 6, 4, 8, 8, 6, 8, 2, 4, 4, 8, 4, 6, 8, 8, 6, 8, 2, 2, 2, 4, 2, 8, 2, 2, 4, 2, 8, 6, 6, 2, 6, 4,
+            4, };
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
-        for (int i = 1; i <= n; i++)
-            System.out.println(i + ": " + calcLastDigit(i));
+        // System.out.println(calcLastDigit(n));
+        // System.out.println(generateTable(100));
+        System.out.println(DICT[n]);
+    }
+
+    public static String generateTable(int n) {
+        StringBuffer buffer = new StringBuffer();
+        for (int i = 1; i <= n; i++) {
+            buffer.append(calcLastDigit(i) + ", ");
+        }
+        return buffer.toString();
     }
 
     public static int calcLastDigit(int n) {
@@ -24,13 +38,20 @@ public class ALGO_83 {
         // 13! = 6227020800 8
         // 14! = 87178291200 2
         // 15! = 1307674368000 8
+        // 16! = 20922789888000 8
+        // 17! = 355687428096000 6
+        // 24! = 620448401733239439360000 6 6 * 25 = 150
+        // 25! = 15511210043330985984000000 4
         int digit = 1;
         for (int i = 2; i <= n; i++) {
-            digit = digit * i;
-            while (digit % 10 == 0) {
+            int lastDigit = digit % 10;
+            int result = lastDigit * i;
+            while (result % 10 == 0) {
+                result /= 10;
                 digit /= 10;
+                result += (digit % 10) * i;
             }
-            digit %= 10;
+            digit = result % 100000;
             // System.out.println(i + "-" + digit);
         }
         return digit % 10;
