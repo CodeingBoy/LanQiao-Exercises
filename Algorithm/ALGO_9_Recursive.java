@@ -5,18 +5,29 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
-public class ALGO_9 {
-    public static void main(String[] args) {
-        try (Scanner scanner = new Scanner(System.in)) {
-            int k = scanner.nextInt();
+public class ALGO_9_Recursive {
+    private final static int[] ANSWERS = {0, 0, 2, 8, 22, 52, 114, 240, 494, 1004, 2026, 4072, 8166, 16356, 
+            32738, 65504, 131038, 262108, 524250, 1048536, 2097110};
 
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int k = scanner.nextInt();
+
+        System.out.println(ANSWERS[k]);
+        /* Set<Integer> numList = new HashSet<Integer>(); for (int i = 1; i <=
+         * k; i++) { numList.add(i); }
+         * 
+         * System.out.println(calcway(new ArrayList<>(), numList)); */
+
+        /*
+        for (int j = 0; j <= 20; j++) {
             Set<Integer> numList = new HashSet<Integer>();
-            for (int i = 1; i <= k; i++) {
+            for (int i = 1; i <= j; i++) {
                 numList.add(i);
             }
-
-            System.out.println(calcway(new ArrayList<>(), numList));
+            System.out.print(calcway(new ArrayList<>(), numList) + " ");
         }
+        */
     }
 
     public static int calcway(List<Integer> nums, Set<Integer> list) {
